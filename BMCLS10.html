@@ -2,28 +2,42 @@
 <html>
   <head>
     <title> Bus Mall-Class 10</title>
-<!--INSERT CSS HERE>-->
 
+    <link rel= "stylesheet" type "text/css"  href= "busMall.css">
+      <!--create css file  -->
+      <style>
+      #image-container {display: flex; justify-content:center;}
+       img{width: 200px;}
+       </style>
     <body>
+      <h1> Bus Mall Product Survey</h1>
 
-      <p>TBA-  Message to the user</p>                        <!--Message to the user -->
+        <p> Message to the User</p>
+        <p> Welcome the Bus Mall. The purpose of this site is to provide some information to our marketing team about some popular
+          items that may be added to the new Bus Mall coming soon. Your participation in this survey is an important first step.
+          Many of the items you see here, may be available in the near future.  We appreciate your opinion.
+          Please click on your favorite choice, one vote for each set of three pictures. Each choice will be counted and you will see a
+          final vote count at the end of the survey.   Our marketing team will collect the survey information and analyze the results.
+          Thank you for your support.</p>
 
 
-        <div  id= "image-container">    <!--connect to JS func#1-imageTracker-->
-          <div img id= "pic1"></div>
-          <div img id= "pic2"></div>
-          <div img id= "pic3"></div>
+        <div id="image-container">                         <!--connect to JS func#1-imageTracker-->
+          <div id="pic1"></div>
+          <div id="pic2"></div>
+          <div id="pic3"></div>
         </div>
+        <p id= "Survey Results"></p>        <!--connect to JS func#3 recordClick(event) -->
 
-        <p id= "survey results"></p>        <!--connect to JS func#3 recordClick(event) -->
 
-
-        <table id= "product-votes">         <!--connect to JS func#3 recordClick(event) -->
-          <tr id= 'first-row'>
-            <th>Product</th>
-            <th>Up-Votes</th>
+        <table id= "product-votes" border=1>         <!--connect to JS func#3 recordClick(event) -->
+            <tr>
+            <th> Product </th>
+            <th> Up-Votes</th>
+            <th>See Totals</th>              <!-- connec to JS func#3 recordClick(event) -->
           </tr>
-    <script type = "text/javascript" src= "BMapp.js"></script>
+        </table>
+
+    <script type= 'text/javascript' src='CLASS10app.js'></script>
 
 
     </body>
