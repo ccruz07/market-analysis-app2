@@ -1,7 +1,7 @@
 /*Bus Mall css */
 h1{
     text-align: center;
-    color: blue;
+    color: black;
     font-family: Arial;
 }
 p{
@@ -9,4 +9,29 @@ p{
 }
 th{
   font-family: Arial;
+}
+
+#image-container {
+    display: flex;
+    justify-content:center;
+}
+
+#chart-container {
+
+}
+
+img{
+  width: 200px;
+  border: 2px solid green;
+  margin: 10px;
+}
+
+
+#container {
+  width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background-color: #99aaff;
+  box-shadow: 3px 3px 5px 5px #888888;
+
 }
