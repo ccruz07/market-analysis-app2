@@ -18,27 +18,11 @@ var imgToTrx = []; //objects array of all the images & vote data
 var pickedImages = []; //3 images selected & showed to user will be stored here
 var chart; // globalize chart variable
 var resultsChart; //marketing chart with sum of all results
-
+var doingTransition = "no";
 
 //NEW FUNCTIONS - CLASS13- connects to <div id = "block" class="off-screen"></div - for TRANSITIONS
 
-function moveIn() {
-  document.getElementById('block').setAttribute('class');
-}
 
-function centerBlock() {
-  document.getElementById('block').setAttribute('class', 'centered');
-}
-
-function hideBlock(event) {
-  event.target,setAttribute('class', 'hide');
-}
-
-window.addEventListener('load', function(){
-  setTimeout(moveIn, 100);
-  setTimeout(centerBlock, 4000);
-});
-document.getElementById('block').addEventListener('click', hideBlock);
 
 //NEW FUNCTIONS CLASS 13 -connects to <div id+ "non-droppable"></div> - for drag_drop
 
@@ -215,6 +199,7 @@ function showImages(){
         var source = imgToTrx[index].imgSource;                       //new info for class 12
         var imageElement = document.createElement('img');
         imageElement.src = source;
+        imageElement.id = "pic"+imageID;
         imageContainer.appendChild(imageElement);
         pickedImages.push(index);
         /*var divtag = document.getElementById('pic' + imageID); // get the div pic1 or pic2, etc
@@ -232,39 +217,13 @@ function showImages(){
     document.getElementById("progress-meter").innerHTML = "Question #" + (1+totalUpVotes) + "/15<br>";
 
 };
+function resetPics()
+{
+  document.getElementById("pic1").setAttribute('class', '');
+  document.getElementById("pic2").setAttribute('class', '');
+  document.getElementById("pic3").setAttribute('class', '');
+  doingTransition = "no";
 
-
-/* when any image is clicked */
-function recordClick(event) {                                                  //UPTD function -class12
-  var clickedImage = event.target;
-  var clickedImageSource = clickedImage.src;
-
-  for (var index = 0; index < imgToTrx.length; index++) {
-    if (clickedImageSource.indexOf(imgToTrx[index].imageSource) >=0) {
-      imgToTrx[index].upVotes++;
-    }
-  }
-//  showImages();
-  if(totalUpVotes >= 15) { /*don't accept the click if already has 15 votes */
-      return;
-  }
-
-  var clickedImage = event.target; /* get the image object from DOM that was cliked */
-  var clickedImageSource = clickedImage.src; /* link to file on harddrive c:\wherever\dog.jpg */
-    //console.log('clicked SRC: '+clikcedImageSource:
-    /* go through ALL the images in our "database" array */
-  for (var index = 0; index < imgToTrx.length; index++) {
-
-        /* check to see if the "keyword" is found in the file name */
-        /* example: if "pen1.jpg" is in c:\files\whatever\pen1.jpg */
-        if (clickedImageSource.indexOf(imgToTrx[index].imgSource) >= 0) {
-          /* found the item clicked that was in the array */
-            imgToTrx[index].upVotes++; //record the votes (add 1 to upvotes)
-            totalUpVotes++; //add one to total votes
-        }
-  }
-
-//    if (totalUpVotes > 3 && totalUpVotes < 15) {
   if(totalUpVotes == 15) { //survey over
       document.getElementById('Survey Results').innerHTML = 'Voting finished ' + totalUpVotes + ' votes in this survey.';
 
@@ -293,6 +252,62 @@ function recordClick(event) {                                                  /
   else { /* this is not the 15th vote, then we have more voting to do */
       showImages();
   }
+}
+
+/* when any image is clicked */
+function recordClick(event) {
+  if(totalUpVotes >= 15) { /*don't accept the click if already has 15 votes */
+      return;
+  }
+                                                  //UPTD function -class12
+  if(doingTransition == "yes")
+    return;
+
+  var clickedImage = event.target;
+  if(clickedImage.id == "image-container")
+    return;
+
+  var clickedImageSource = clickedImage.src;
+
+
+
+  setTimeout(resetPics, 500);
+
+  if(clickedImage.id != "pic1") {
+    document.getElementById("pic1").setAttribute('class', "off-screen");
+  }
+  else {
+    document.getElementById("pic1").setAttribute('class', "pop-out");
+  }
+
+  if(clickedImage.id != "pic2") {
+    document.getElementById("pic2").setAttribute('class', "off-screen");
+  }
+  else {
+    document.getElementById("pic2").setAttribute('class', "pop-out");
+  }
+
+  if(clickedImage.id != "pic3") {
+    document.getElementById("pic3").setAttribute('class', "off-screen");
+  }
+  else {
+    document.getElementById("pic3").setAttribute('class', "pop-out");
+  }
+    //console.log('clicked SRC: '+clikcedImageSource:
+    /* go through ALL the images in our "database" array */
+  for (var index = 0; index < imgToTrx.length; index++) {
+
+        /* check to see if the "keyword" is found in the file name */
+        /* example: if "pen1.jpg" is in c:\files\whatever\pen1.jpg */
+        if (clickedImageSource.indexOf(imgToTrx[index].imgSource) >= 0) {
+          /* found the item clicked that was in the array */
+            imgToTrx[index].upVotes++; //record the votes (add 1 to upvotes)
+            totalUpVotes++; //add one to total votes
+        }
+  }
+
+//    if (totalUpVotes > 3 && totalUpVotes < 15) {
+  //the next step triggers in the transition complete section
 };
 
 //------------------- LOAD EVENTS -------------------

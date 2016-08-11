@@ -1,12 +1,3 @@
-header h1 {                                                <!--BUS MALL Class13 css file -->
-  display: inline-block;
-  font-size: 48px;
-  vertical-align: middle;
-}
-
-header img {
-  vertical-align: middle;
-}
 
 main nav, main section, main aside {
   display: inline-block;
@@ -33,6 +24,7 @@ main aside ul {
   margin-top: 0;
 }
 
+/*
 main nav a {
   display: block;
   color: rgb(194, 30, 31);
@@ -56,13 +48,14 @@ nav ul {
   margin: 0 1em 0 0;
   padding: 0;
 }
+*/
 
 /*nav ul li {
   position: relative;
 }*/
 
+/*
 .sublist {
-  /* display: none; */
   position: absolute;
   margin-left: 130px;
   margin-top: -30px;
@@ -71,13 +64,43 @@ nav ul {
 }
 
 li:hover .sublist {
-  /* display: block;*/
   opacity: 1;
   transition: all 0.25s 0.25s;
 }
 
 nav .sublist:hover {
-  /* display: block;*/
   opacity: 1;
   transition: all 0.25s 0.25s;
+}
+*/
+
+img {
+  transition: all 0.5s;
+  margin-top: 40px;
+}
+
+  img:hover {
+    background-color: blue;
+    border-radius: 50%;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+
+
+  .hide {
+    opacity: 0;
+}
+
+    .off-screen {
+      margin-top: calc(50% + 100px);
+      transform: rotate(2745deg);
+}
+
+.pop-out {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  margin-top: -40;
 }
